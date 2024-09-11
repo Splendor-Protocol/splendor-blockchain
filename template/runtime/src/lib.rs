@@ -173,8 +173,8 @@ pub mod opaque {
 
 #[sp_version::runtime_version]
 pub const VERSION: RuntimeVersion = RuntimeVersion {
-	spec_name: create_runtime_str!("frontier-template"),
-	impl_name: create_runtime_str!("frontier-template"),
+	spec_name: create_runtime_str!("splendor-template"),
+	impl_name: create_runtime_str!("splendor-template"),
 	authoring_version: 1,
 	spec_version: 1,
 	impl_version: 1,
@@ -208,7 +208,7 @@ parameter_types! {
 		::with_sensible_defaults(MAXIMUM_BLOCK_WEIGHT, NORMAL_DISPATCH_RATIO);
 	pub BlockLength: frame_system::limits::BlockLength = frame_system::limits::BlockLength
 		::max_with_normal_ratio(MAXIMUM_BLOCK_LENGTH, NORMAL_DISPATCH_RATIO);
-	pub const SS58Prefix: u8 = 42;
+	pub const SS58Prefix: u8 = 9126;
 }
 
 // Configure FRAME pallets to include in runtime.

@@ -1,0 +1,50 @@
+services:
+  splendor-blockchain-server:
+    build: .
+    container_name: splendor-blockchain-server
+    command: ./init-node-server.sh
+    ports:
+      - "30333:30333"
+      - "9933:9933"
+      - "9944:9944"
+      - "9615:9615"
+    restart: always
+    volumes:
+      - blockchain-data-1:/data/node01
+    networks:
+      - splendor-net
+
+  splendor-blockchain-server-2:
+    build: .
+    container_name: splendor-blockchain-server-2
+    command: ./init-node-server-2.sh
+    restart: always
+    depends_on:
+      - splendor-blockchain-server
+    volumes:
+      - blockchain-data-2:/data/node02
+    networks:
+      - splendor-net
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - splendor-blockchain-server-2
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+    networks:
+      - splendor-net
+
+volumes:
+  https-portal-data:
+  blockchain-data-1:
+  blockchain-data-2:
+
+networks:
+  splendor-net:

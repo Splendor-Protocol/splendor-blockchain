@@ -50,11 +50,38 @@ fn properties() -> Properties {
 	properties
 }
 
-const UNITS: Balance = 1_000_000_000_000_000_000;
+const PLN_UNITS: Balance = 1_000_000_000_000_000_000;
+
+pub fn production_config(enable_manual_seal: bool) -> ChainSpec {
+	ChainSpec::builder(WASM_BINARY.expect("WASM not available"), Default::default())
+		.with_name("Splendor Network")
+		.with_id("prod")
+		.with_chain_type(ChainType::Live)
+		.with_properties(properties())
+		.with_genesis_config_patch(mainnet_genesis(
+			AccountId::from(hex!("526c0C80ACa3946aFd61AB5d46618AAf43D8efC4")),
+			// Pre-funded accounts
+			vec![
+				AccountId::from(hex!("526c0C80ACa3946aFd61AB5d46618AAf43D8efC4")), // Test, TODO: delete
+				AccountId::from(hex!("999CB50898dfb71C6aAbcA7943E56f14ba80eFDA")), // Test, TODO: delete
+				AccountId::from(hex!("0e783A5EE1F2e1c23aA7409Dd9702a3ab0B01e5A")),
+				AccountId::from(hex!("B33D7Bb15F051077Da866526729D7fDbc0603EFb")),
+			],
+			// Initial PoA authorities
+			vec![
+				authority_keys_from_seed("Alice"),
+				authority_keys_from_seed("Bob"),
+			],
+			// Ethereum chain ID
+			SS58Prefix::get() as u64,
+			enable_manual_seal,
+		))
+		.build()
+}
 
 pub fn development_config(enable_manual_seal: bool) -> ChainSpec {
 	ChainSpec::builder(WASM_BINARY.expect("WASM not available"), Default::default())
-		.with_name("Development")
+		.with_name("Splendor Development")
 		.with_id("dev")
 		.with_chain_type(ChainType::Development)
 		.with_properties(properties())
@@ -81,7 +108,7 @@ pub fn development_config(enable_manual_seal: bool) -> ChainSpec {
 
 pub fn local_testnet_config() -> ChainSpec {
 	ChainSpec::builder(WASM_BINARY.expect("WASM not available"), Default::default())
-		.with_name("Local Testnet")
+		.with_name("Splendor Local Testnet")
 		.with_id("local_testnet")
 		.with_chain_type(ChainType::Local)
 		.with_properties(properties())
@@ -165,7 +192,75 @@ fn testnet_genesis(
 			"balances": endowed_accounts
 				.iter()
 				.cloned()
-				.map(|k| (k, 1_000_000 * UNITS))
+				.map(|k| (k, 1_000_000 * PLN_UNITS))
+				.collect::<Vec<_>>()
+		},
+		"aura": { "authorities": initial_authorities.iter().map(|x| (x.0.clone())).collect::<Vec<_>>() },
+		"grandpa": { "authorities": initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect::<Vec<_>>() },
+		"evmChainId": { "chainId": chain_id },
+		"evm": { "accounts": evm_accounts },
+		"manualSeal": { "enable": enable_manual_seal }
+	})
+}
+
+fn mainnet_genesis(
+	sudo_key: AccountId,
+	endowed_accounts: Vec<AccountId>,
+	initial_authorities: Vec<(AuraId, GrandpaId)>,
+	chain_id: u64,
+	enable_manual_seal: bool,
+) -> serde_json::Value {
+	let evm_accounts = {
+		let mut map = BTreeMap::new();
+		map.insert(
+			// H160 address of Alice dev account
+			// Derived from SS58 (42 prefix) address
+			// SS58: 5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+			// hex: 0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d
+			// Using the full hex key, truncating to the first 20 bytes (the first 40 hex chars)
+			H160::from_str("d43593c715fdd31c61141abd04a99fd6822c8558")
+				.expect("internal H160 is valid; qed"),
+			fp_evm::GenesisAccount {
+				balance: U256::from_str("0xffffffffffffffffffffffffffffffff")
+					.expect("internal U256 is valid; qed"),
+				code: Default::default(),
+				nonce: Default::default(),
+				storage: Default::default(),
+			},
+		);
+		map.insert(
+			// H160 address of CI test runner account
+			H160::from_str("6be02d1d3665660d22ff9624b7be0551ee1ac91b")
+				.expect("internal H160 is valid; qed"),
+			fp_evm::GenesisAccount {
+				balance: U256::from_str("0xffffffffffffffffffffffffffffffff")
+					.expect("internal U256 is valid; qed"),
+				code: Default::default(),
+				nonce: Default::default(),
+				storage: Default::default(),
+			},
+		);
+		map.insert(
+			// H160 address for benchmark usage
+			H160::from_str("1000000000000000000000000000000000000001")
+				.expect("internal H160 is valid; qed"),
+			fp_evm::GenesisAccount {
+				nonce: U256::from(1),
+				balance: U256::from(1_000_000_000_000_000_000_000_000u128),
+				storage: Default::default(),
+				code: vec![0x00],
+			},
+		);
+		map
+	};
+
+	serde_json::json!({
+		"sudo": { "key": Some(sudo_key) },
+		"balances": {
+			"balances": endowed_accounts
+				.iter()
+				.cloned()
+				.map(|k| (k, 30_000_000 * PLN_UNITS))
 				.collect::<Vec<_>>()
 		},
 		"aura": { "authorities": initial_authorities.iter().map(|x| (x.0.clone())).collect::<Vec<_>>() },
