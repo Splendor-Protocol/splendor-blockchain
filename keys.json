@@ -1,0 +1,42 @@
+{
+    "node01": {
+        "Sr25519": {
+            "secretPhrase": "warrior way endorse flag lottery put oven level problem kidney cradle laptop",
+            "networkID": "substrate",
+            "secretSeed": "0xa632e81bafc43d65105a8b1836816015cc7494ffa8c7051a06392719485e6683",
+            "publicKey": "0x1cee373d7154042ef6ad9c60ea61d9531b220114172c8265311cf3622530407d",
+            "accountID": "0x1cee373d7154042ef6ad9c60ea61d9531b220114172c8265311cf3622530407d",
+            "publicKeySS58": "5Cidxo7ZTzsKTrSEyn5KiaLB83tPs1ah8RvvFoJNMRBnQPE2",
+            "SS58Address": "5Cidxo7ZTzsKTrSEyn5KiaLB83tPs1ah8RvvFoJNMRBnQPE2"
+        },
+        "Ed25519": {
+            "secretPhrase": "warrior way endorse flag lottery put oven level problem kidney cradle laptop",
+            "networkID": "substrate",
+            "secretSeed": "0xa632e81bafc43d65105a8b1836816015cc7494ffa8c7051a06392719485e6683",
+            "publicKey": "0x7fbc229599fba23c337304403cac257c3792307cfd9581de8fecdebcd1aba3fb",
+            "accountID": "0x7fbc229599fba23c337304403cac257c3792307cfd9581de8fecdebcd1aba3fb",
+            "publicKeySS58": "5ExBpsybwkvAyz1MRq1QX5RTudaNsDHV2PwVJ27D6Q3Wd6SU",
+            "SS58Address": "5ExBpsybwkvAyz1MRq1QX5RTudaNsDHV2PwVJ27D6Q3Wd6SU"
+        }
+    },
+    "node02": {
+        "Sr25519": {
+            "secretPhrase": "dentist vehicle grow habit case typical roof cactus picnic car exact write",
+            "networkID": "substrate",
+            "secretSeed": "0xc9c8deb7dd9c2fece81f1911e4114c073095982172588fb7e28f6f20685696e7",
+            "publicKey": "0xa4cd464ac41dcab72053eeae4b2962b45defbf93c33f9af9c1e8cd783165d127",
+            "accountID": "0xa4cd464ac41dcab72053eeae4b2962b45defbf93c33f9af9c1e8cd783165d127",
+            "publicKeySS58": "5FnngwrySzETYMcS63Vh6tTU6VuACkniZZ23C435edxsE6s7",
+            "SS58Address": "5FnngwrySzETYMcS63Vh6tTU6VuACkniZZ23C435edxsE6s7"
+        },
+        "Ed25519": {
+            "secretPhrase": "dentist vehicle grow habit case typical roof cactus picnic car exact write",
+            "networkID": "substrate",
+            "secretSeed": "0xc9c8deb7dd9c2fece81f1911e4114c073095982172588fb7e28f6f20685696e7",
+            "publicKey": "0xfd5163a99565dd6fc4be16f667ea35ab96222ca0c769fc2fc30442e6ecba9ba2",
+            "accountID": "0xfd5163a99565dd6fc4be16f667ea35ab96222ca0c769fc2fc30442e6ecba9ba2",
+            "publicKeySS58": "5Hnr9dj4QJUYWCQNyQoE7aW9QVckn9yP7aH2zqerftQmCXX2",
+            "SS58Address": "5Hnr9dj4QJUYWCQNyQoE7aW9QVckn9yP7aH2zqerftQmCXX2"
+        }
+    }
+}
