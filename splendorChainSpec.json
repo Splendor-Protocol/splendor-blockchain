@@ -75,7 +75,7 @@
           }
         },
         "evmChainId": {
-          "chainId": 42
+          "chainId": 9726
         },
         "grandpa": {
           "authorities": [
