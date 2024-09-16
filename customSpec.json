@@ -1,10 +1,8 @@
 {
-  "name": "Splendor Local Testnet",
+  "name": "Splendor Mainnet",
   "id": "local_testnet",
   "chainType": "Local",
-  "bootNodes": [
-    "/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWQdgzzuqUxa3zqALaiXWKiaWT9LtF39dVizrSBoozP2S4"
-  ],
+  "bootNodes": [],
   "telemetryEndpoints": null,
   "protocolId": null,
   "properties": {
@@ -18,8 +16,8 @@
       "patch": {
         "aura": {
           "authorities": [
-            "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY",
-            "5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty"
+            "5Cidxo7ZTzsKTrSEyn5KiaLB83tPs1ah8RvvFoJNMRBnQPE2",
+            "5FnngwrySzETYMcS63Vh6tTU6VuACkniZZ23C435edxsE6s7"
           ]
         },
         "balances": {
@@ -75,16 +73,16 @@
           }
         },
         "evmChainId": {
-          "chainId": 9726
+          "chainId": 42
         },
         "grandpa": {
           "authorities": [
             [
-              "5FA9nQDVg267DEd8m1ZypXLBnvN7SFxYwV7ndqSYGiN9TTpu",
+              "5ExBpsybwkvAyz1MRq1QX5RTudaNsDHV2PwVJ27D6Q3Wd6SU",
               1
             ],
             [
-              "5GoNkf6WdbxCFnPdAnYYQyCjAKPJgLNxXwPjwTh6DGg6gN3E",
+              "5Hnr9dj4QJUYWCQNyQoE7aW9QVckn9yP7aH2zqerftQmCXX2",
               1
             ]
           ]
