@@ -19,4 +19,4 @@ splendor-template-node --base-path /data/node02 \
   --pruning archive \
   --offchain-worker always \
   --password $PASSWORD \
-  --bootnodes /ip4/24.144.104.221/tcp/30333/p2p/12D3KooWEyoppNCUx8Yx66oV9fJnriXwCcXwDDUA2kj6vnc6iDEp
+  --bootnodes /ip4/24.144.104.221/tcp/30333/p2p/12D3KooWFrA5MEnoXKS4arzXbgWoXD1eycACxWfTJNbxFAC5bSoM
